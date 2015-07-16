@@ -7,19 +7,22 @@ import (
 	"strings"
 )
 
+// N3 representation
 type N3 struct {
 	Prefix   string
 	PrefixNS string
-	Uri      string
+	URI      string
 	Items    []N3Element
 }
 
+// N3Element represents  Subject/Predicate/Object
 type N3Element struct {
 	Key   string
 	Value interface{}
 }
 
-func (n *N3) Print() {
+// Print prints out N3 on stdout
+func (n N3) Print() {
 	for _, v := range n.getStringList() {
 		fmt.Println(v)
 	}
@@ -32,13 +35,13 @@ func replaceSuffix(in string, r rune, i int) string {
 	return string(o)
 }
 
-func (n *N3) getStringList() []string {
+func (n N3) getStringList() []string {
 	r := []string{}
 	r = append(
 		r,
 		fmt.Sprintf("@prefix %s: <%s>.", n.PrefixNS, n.Prefix),
 		"",
-		fmt.Sprintf("<%s>", n.Uri),
+		fmt.Sprintf("<%s>", n.URI),
 	)
 
 	if len(n.Items) > 0 {
@@ -55,8 +58,9 @@ func (n *N3) getStringList() []string {
 	return r
 }
 
-func (n *N3) WriteN3() {
-	u := strings.Split(n.Uri, "/")
+// WriteN3 creates .n3 file
+func (n N3) WriteN3() {
+	u := strings.Split(n.URI, "/")
 	fn := fmt.Sprintf("%s.n3", u[len(u)-1])
 	f, err := os.Create(fn)
 

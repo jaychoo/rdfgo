@@ -2,29 +2,36 @@ package sql
 
 import (
 	"fmt"
-	"github.com/jaychoo/rdfgo"
+	"github.com/jaychoo/rdfgo/n3"
 )
 
-type SqlTable struct {
+// Table - Simple representation of SQL table
+type Table struct {
 	DataBaseName string
-	DataBaseUri  string
+	DataBaseURI  string
 	Name         string
-	Rows         map[int]SqlTableRow
+	Rows         map[int]Row
 }
 
-type SqlTableRow struct {
-	Entry SqlEntry
+// Row - Table Row
+type Row struct {
+	Columns []Entry
 }
 
-type SqlEntry struct {
+// Entry - Rwo Entry
+type Entry struct {
 	Key   string
 	Value interface{}
 }
 
-func (s *SqlTable) CreateN3() []N3 {
-	r = []N3{}
-	for k, v := range s.Rows {
-		n = N3{}
-		r = append(r, N3)
+// CreateN3 - Create list of N3 struct instances from SQL Table
+func (t *Table) CreateN3() []n3.N3 {
+	r := []n3.N3{}
+	for k, v := range t.Rows {
+		fmt.Println(k, v)
+		n := n3.N3{}
+		r = append(r, n)
 	}
+
+	return r
 }

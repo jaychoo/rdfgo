@@ -6,7 +6,7 @@ func getTestObject() N3 {
 	n := N3{
 		Prefix:   "http://purl.org/dc/elements/1.1/",
 		PrefixNS: "dc",
-		Uri:      "http://en.wikipedia.org/wiki/Tony_Benn",
+		URI:      "http://en.wikipedia.org/wiki/Tony_Benn",
 		Items: []N3Element{
 			N3Element{
 				Key:   "title",
