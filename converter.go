@@ -7,7 +7,8 @@ import (
 	"github.com/jaychoo/rdfgo/sql"
 )
 
-func convert(t *sql.Table) []n3.N3 {
+// ConvertTableToN3 reurn a list of N3 structs from sql.Table
+func ConvertTableToN3(t *sql.Table) []n3.N3 {
 	r := []n3.N3{}
 
 	for _, v := range t.Rows {
@@ -28,11 +29,6 @@ func convert(t *sql.Table) []n3.N3 {
 	}
 
 	return r
-}
-
-// ConvertBatch returns list of N3 from the sql.Table
-func ConvertBatch() {
-
 }
 
 func main() {
