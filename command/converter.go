@@ -1,4 +1,4 @@
-package rdfgo
+package command
 
 import (
 	"fmt"
